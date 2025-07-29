@@ -1,8 +1,9 @@
 const express = require('express');
-const User = require('./models/User');
+const User = require('../model/UserSchema'); 
 
 const app = express();
 app.use(express.json());
+const PORT = process.env.PORT || 3000;
 
 
 // Routes
@@ -23,6 +24,7 @@ app.get('/api/users/:id', async (req, res) => {
 });
 
 
+
 app.post('/api/users', async (req, res) => {
     const { name, result, date, password } = req.body;
     if (!name || result == null || !date || !password)
@@ -37,6 +39,7 @@ app.post('/api/users', async (req, res) => {
         date: newUser.date
     });
 });
+
 
 
 app.put('/api/users/:id', async (req, res) => {
@@ -67,5 +70,7 @@ app.delete('/api/users/:id', async (req, res) => {
         res.status(400).json({ message: 'Invalid ID format' });
     }
 });
+
+
 
 module.exports = app;
