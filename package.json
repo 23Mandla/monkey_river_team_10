@@ -3,32 +3,42 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "test": "jest --coverage --outputFile=test-results.json --json",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
+  "jest-junit": {
+    "outputDirectory": "test-reports",
+    "outputName": "junit.xml"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "testResultsProcessor": "jest-junit"
+  },
   "dependencies": {
-<<<<<<< HEAD
-    "jsonwebtoken": "^9.0.2",
-    "next": "15.4.4",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
-=======
     "bcrypt": "^6.0.0",
     "express": "^5.1.0",
+    "mongodb-memory-server": "^10.1.4",
+    "mongodb-memory-server-core": "^10.1.4",
     "mongoose": "^8.16.5",
     "next": "15.4.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "uuid": "^11.1.0"
->>>>>>> 37c684d451991dbe1e55683dd35d61152531fa61
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.28.0",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "babel-jest": "^30.0.5",
     "eslint": "^9",
     "eslint-config-next": "15.4.4",
+    "jest": "^30.0.5",
+    "jest-junit": "^16.0.0",
+    "supertest": "^7.1.4",
     "tailwindcss": "^4"
   }
 }
