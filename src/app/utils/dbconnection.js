@@ -9,5 +9,3 @@ export default async function dbconnection() {
         throw err;
     }
 }
-
-module.exports = dbconnection;
