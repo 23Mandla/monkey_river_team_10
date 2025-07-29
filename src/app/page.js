@@ -8,7 +8,7 @@ export default function Home() {
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <h1>Welcome to team 10 monkey rivers</h1>
         <Image
-          src="/logo.jpg"   // Image file inside public/landing.jpg
+          src="/logo.jpg"   
           alt="Landing Image"
           width={600}          
           height={400}       

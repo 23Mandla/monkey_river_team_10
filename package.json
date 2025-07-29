@@ -19,8 +19,10 @@
     "testResultsProcessor": "jest-junit"
   },
   "dependencies": {
+    "axios": "^1.11.0",
     "bcrypt": "^6.0.0",
     "express": "^5.1.0",
+    "js-cookie": "^3.0.5",
     "mongodb-memory-server": "^10.1.4",
     "mongodb-memory-server-core": "^10.1.4",
     "mongoose": "^8.16.5",

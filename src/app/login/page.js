@@ -6,62 +6,109 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 export default function Login() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
+
     try {
-      // Call your login API endpoint
       const response = await axios.post("/api/userapi/login", { email, password });
-      
-      // Assuming your API returns token in response.data.token
-      const token = response.data.token;
-      if (token) {
-        // Save JWT token in a cookie (expires in 1 day)
-        Cookies.set("token", token, { expires: 1 });
-        
-        // Redirect to profile page
-        router.push("/profile");
-      } else {
-        setError("Login failed: no token received");
-      }
+      Cookies.set("token", response.data.token);
+      setLoading(false);
+      router.push("/profile"); // redirect after login
     } catch (err) {
-      setError("Invalid email or password");
+      setError(err.response?.data?.message || "Login failed");
+      setLoading(false);
     }
   };
 
   return (
-    <main className="p-8 max-w-md mx-auto">
-      <h1 className="text-2xl mb-6">Login</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        {error && <p className="text-red-600">{error}</p>}
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 to-black flex items-center justify-center p-6">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-indigo-800/80 backdrop-blur-md rounded-xl shadow-xl max-w-md w-full p-10 space-y-8
+                   text-white transform transition-transform duration-500 hover:scale-[1.03]"
+      >
+        <h2 className="text-3xl font-extrabold text-center mb-6">Login to your Account</h2>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="p-2 border rounded"
-        />
+        {error && (
+          <div className="bg-red-700 p-3 rounded text-center text-sm animate-pulse">
+            {error}
+          </div>
+        )}
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          className="p-2 border rounded"
-        />
+        <div className="space-y-1">
+          <label htmlFor="email" className="block font-semibold">
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            required
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full rounded-md bg-indigo-900 px-4 py-3 placeholder-indigo-400
+                       focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500
+                       transition-colors duration-300"
+          />
+        </div>
 
-        <button type="submit" className="bg-blue-600 text-white py-2 rounded">
-          Login
+        <div className="space-y-1">
+          <label htmlFor="password" className="block font-semibold">
+            Password
+          </label>
+          <input
+            id="password"
+            type="password"
+            required
+            placeholder="••••••••"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full rounded-md bg-indigo-900 px-4 py-3 placeholder-indigo-400
+                       focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500
+                       transition-colors duration-300"
+          />
+        </div>
+
+        <div className="flex items-center justify-between">
+          <label className="flex items-center space-x-2 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              className="form-checkbox rounded text-pink-500 focus:ring-pink-400"
+            />
+            <span>Remember Me</span>
+          </label>
+          <a href="#" className="text-pink-400 hover:text-pink-300 transition-colors duration-300 text-sm">
+            Forgot Password?
+          </a>
+        </div>
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-pink-600 hover:bg-pink-700 transition-colors duration-300
+                     font-bold py-3 rounded-md shadow-lg transform active:scale-95"
+        >
+          {loading ? "Logging in..." : "Login"}
         </button>
+
+        <p className="text-center text-indigo-300">
+          Not registered yet?{" "}
+          <a
+            href="/register"
+            className="text-pink-400 hover:text-pink-300 font-semibold transition-colors duration-300"
+          >
+            Create an account
+          </a>
+        </p>
       </form>
-    </main>
+    </div>
   );
 }
