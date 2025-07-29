@@ -6,6 +6,8 @@ export default async function dbconnection() {
         console.log("Database connected");
     } catch(err){
         console.log(err)
-        trow error;}
+        throw err;
     }
 }
+
+module.exports = dbconnection;
