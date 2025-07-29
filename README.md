@@ -66,10 +66,10 @@ Automated tests were written to validate:
 
 Developers:
 
-Mandla Mbolekwa
-Thato "Tom" Kekae
-Entle Matshikiza
-Mokgethwa Kambula
+Mandla Mbolekwa, 
+Thato "Tom" Kekae, 
+Entle Matshikiza, 
+Mokgethwa Kambula, 
 Siphamandla Mbatha 
 
 ### Run tests:
