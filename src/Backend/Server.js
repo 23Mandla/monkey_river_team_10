@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 const express = require('express');
 const app = require('../app/API/UserAPI'); 
 
+
 (async function dbconnection() {
     try {
-        await mongoose.connect(process.env.MONGODDB_URI);
+        await mongoose.connect("mongodb://localhost:27017/Spha");
         console.log("Database connected");
     } catch(err){
         console.log(err)

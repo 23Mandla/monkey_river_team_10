@@ -3,7 +3,6 @@ const User = require('../../model/UserSchema');
 
 const app = express();
 app.use(express.json());
-const PORT = process.env.PORT || 3000;
 
 
 // Routes
@@ -26,16 +25,16 @@ app.get('/api/users/:id', async (req, res) => {
 
 
 app.post('/api/users', async (req, res) => {
-    const { name, result, date, password } = req.body;
-    if (!name || result == null || !date || !password)
+    const { name, email, date, password } = req.body;
+    if (!name || !email || !password)
         return res.status(400).json({ message: 'Missing required fields' });
 
-    const newUser = new User({ name, result, date, password });
+    const newUser = new User({ name, email, date, password });
     await newUser.save();
     res.status(201).json({
         id: newUser._id,
         name: newUser.name,
-        result: newUser.result,
+        email: newUser.email,
         date: newUser.date
     });
 });

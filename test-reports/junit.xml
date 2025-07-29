@@ -1,15 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="5" failures="0" errors="0" time="6.089">
-  <testsuite name="User API" errors="0" failures="0" skipped="0" timestamp="2025-07-29T20:24:15" time="5.802" tests="5">
-    <testcase classname="User API POST /api/users should create a new user" name="User API POST /api/users should create a new user" time="0.196">
-    </testcase>
-    <testcase classname="User API GET /api/users should return list of users" name="User API GET /api/users should return list of users" time="0.117">
-    </testcase>
-    <testcase classname="User API GET /api/users/:id returns user by ID" name="User API GET /api/users/:id returns user by ID" time="0.112">
-    </testcase>
-    <testcase classname="User API PUT /api/users/:id updates user" name="User API PUT /api/users/:id updates user" time="0.118">
-    </testcase>
-    <testcase classname="User API DELETE /api/users/:id deletes user" name="User API DELETE /api/users/:id deletes user" time="0.109">
-    </testcase>
-  </testsuite>
+<testsuites name="jest tests" tests="0" failures="0" errors="0" time="1.636">
 </testsuites>
