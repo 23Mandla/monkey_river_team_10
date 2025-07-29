@@ -64,12 +64,6 @@ Automated tests were written to validate:
 - Core CRUD logic
 - Feature routes
 
-### Run tests:
-```bash
-# From /server
-npm run test
-
-
 Developers:
 
 Mandla Mbolekwa
@@ -77,3 +71,9 @@ Thato "Tom" Kekae
 Entle Matshikiza
 Mokgethwa Kambula
 Siphamandla Mbatha 
+
+### Run tests:
+```bash
+# From /server
+npm run test
+
