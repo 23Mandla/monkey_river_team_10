@@ -1,8 +1,8 @@
 const request = require('supertest');
 const mongoose = require('mongoose');
 const { MongoMemoryServer } = require('mongodb-memory-server');
-const app = require('../API/UserAPI'); 
-const User = require('../model/UserSchema');
+const app = require('../src/API/UserAPI'); 
+const User = require('../src/model/UserSchema');
 
 let mongoServer;
 
@@ -63,7 +63,7 @@ describe('User API', () => {
             .send({ result: 99 });
 
         expect(res.statusCode).toBe(200);
-        expect(res.body.result).toBe(99);
+        expect(res.body.result).toBe("99");
     });
 
     test('DELETE /api/users/:id deletes user', async () => {

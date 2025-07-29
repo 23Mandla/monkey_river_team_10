@@ -1,0 +1,42 @@
+name: Run Jest Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Run Jest Tests and Save Output
+      run: |
+        mkdir -p test-reports
+        npm test | tee test-reports/console.log
+
+    - name: Upload Console Output
+      uses: actions/upload-artifact@v3
+      with:
+        name: console-log
+        path: test-reports/console.log
+
+    - name: Upload Coverage Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage-report
+        path: coverage/
+
+    - name: Upload Jest JUnit Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-report
+        path: test-reports/junit.xml
