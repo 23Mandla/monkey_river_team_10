@@ -26,9 +26,11 @@ export default function Register() {
     setLoading(true);
 
     try {
-      const response = await axios.post("/api/userapi/users", { name, email, password });
+      const response = await axios.post("http://localhost:5000/api/users", { name, email, password });
       Cookies.set("token", response.data.token); // if your API returns token on signup
       setLoading(false);
+
+      localStorage.setItem('user', JSON.stringify(response.data)); 
       router.push("/profile"); // redirect after register
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed");

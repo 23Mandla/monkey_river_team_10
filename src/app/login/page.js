@@ -18,7 +18,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const response = await axios.post("/api/userapi/login", { email, password });
+      const response = await axios.post("http://localhost:5000/api/users/login", { email, password });
       Cookies.set("token", response.data.token);
       setLoading(false);
       router.push("/profile"); // redirect after login
